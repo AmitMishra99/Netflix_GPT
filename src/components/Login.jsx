@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import validation from "../utils/validation";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const Login = () => {
   const [signIn, signUp] = useState(true);
@@ -13,8 +18,43 @@ const Login = () => {
   };
   const formValidation = () => {
     const msg = validation(email.current.value, password.current.value);
-    setError(msg)
-    console.log(msg)
+    setError(msg);
+
+    if (!signIn) {
+      // Sign Up Logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorCode + " - " + errorMessage);
+        });
+    } else {
+      // Sign In Logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError("You are new to Netflix-GPT - Go for Sign up ");
+        });
+    }
   };
 
   return (
@@ -48,7 +88,7 @@ const Login = () => {
                 placeholder="Email or mobile number"
                 className="w-full p-4 bg-gray-800 rounded-md text-white border-none focus:outline-none focus:ring-2"
               />
-              
+
               <input
                 ref={password}
                 type="password"
