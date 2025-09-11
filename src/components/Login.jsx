@@ -52,7 +52,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setError("You are new to Netflix-GPT - Go for Sign up ");
+          setError(errorCode + "-" + errorMessage);
         });
     }
   };
@@ -65,7 +65,6 @@ const Login = () => {
         src="https://assets.nflxext.com/ffe/siteui/vlv3/8d617e19-3c3c-4c28-8998-c9b14dbc7200/web/IN-en-20250901-TRIFECTA-perspective_48d84d4e-9558-46b8-a0f3-8b2dc8478431_small.jpg"
         alt=""
       />
-      <div className="bg-gradient-to-b from-black h-30 inset-0 absolute"></div>
       <div className=" relative text-white flex justify-center items-center min-h-screen p-4">
         <div className="bg-black/80  p-16 rounded-md w-full max-w-md">
           <div className="space-y-6">
