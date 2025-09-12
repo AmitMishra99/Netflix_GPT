@@ -5,12 +5,20 @@ import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 
 const Login = () => {
+
   const [signIn, signUp] = useState(true);
   const [error, setError] = useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const email = useRef(null);
+  const name = useRef(null);
   const password = useRef(null);
 
   const toggleFeature = () => {
@@ -25,11 +33,22 @@ const Login = () => {
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
+          updateProfile(user,  {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/175522754?v=4",
+          })
+            .then(() => {
+               const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName, photoURL }));
+              navigate("/browse")
+            })
+            .catch((error) => {
+             setError(error.message)
+            });
           console.log(user);
         })
         .catch((error) => {
@@ -42,7 +61,7 @@ const Login = () => {
       signInWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value, 
       )
         .then((userCredential) => {
           // Signed in
@@ -76,6 +95,7 @@ const Login = () => {
                 ""
               ) : (
                 <input
+                  ref={name}
                   type="name"
                   placeholder="Full Name "
                   className="w-full p-4 bg-gray-800 rounded-md text-white border-none focus:outline-none focus:ring-2"

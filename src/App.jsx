@@ -5,23 +5,22 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./store/userSlice";
-import Browse from "./components/Browse"
+import Browse from "./components/Browse";
 
 const App = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid, email, displayName }));
-        navigate("/browse")
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate("/browse");
       } else {
         // User is signed out
         dispatch(removeUser());
-        navigate("/")
+        navigate("/");
       }
     });
   }, []);
@@ -30,7 +29,7 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/browse" element={<Browse/>} />
+        <Route path="/browse" element={<Browse />} />
       </Routes>
     </div>
   );
