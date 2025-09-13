@@ -8,10 +8,11 @@ import { addUser, removeUser } from "./store/userSlice";
 import Browse from "./components/Browse";
 
 const App = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
         const { uid, email, displayName, photoURL } = user;
@@ -23,6 +24,8 @@ const App = () => {
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   return (

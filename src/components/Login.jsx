@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
+import { user_logo } from "../store/constants";
 
 const Login = () => {
 
@@ -39,7 +40,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user,  {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/175522754?v=4",
+            photoURL: user_logo,
           })
             .then(() => {
                const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -49,7 +50,6 @@ const Login = () => {
             .catch((error) => {
              setError(error.message)
             });
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
