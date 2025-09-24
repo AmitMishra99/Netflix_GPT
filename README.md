@@ -1,10 +1,13 @@
 
-        # Command for Installation of Redux in Project :
-        - npm install @reduxjs/toolkit react-redux
-
-        # This Project Includes : 
-        --------------------------
-        -- Form Validation 
-        -- SIgn in\Sign up Authentication using FIrebase
-        -- Redux - toolkit : earlier for userSlice 
-
+  # Netflix-GPT :
+  ----------------
+  - Header Created
+  - Routing Added 
+  - Login Page Created 
+  - Form Validation Added 
+  - useRef Hook
+  - User Authentication using Firebase for Sign in/Sign up/Sign out/ onAuthChange
+  - unsubscribe to the onAuthChange 
+  - Redux - toolkit integrated for user slice 
+  - hardcoded data to constants file 
+  - 
