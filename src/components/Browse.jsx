@@ -2,28 +2,15 @@ import Header from "./Header";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { api_options } from "../utils/constants";
-import { addNowPlayingMovies } from "../store/moviesSlice";
+import { useSelector } from "react-redux";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import PrimaryContainer from "./Primary/PrimaryContainer";
 
 const Browse = () => {
   
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  const dispatch = useDispatch();
-  const getNowPlayingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      api_options
-    );
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
-  };
-  useEffect(() => {
-    getNowPlayingMovies();
-  }, []);
+  useNowPlayingMovies();
 
   const handleSignOut = () => {
     signOut(auth)
@@ -37,11 +24,11 @@ const Browse = () => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div >
       <Header />
-      <div className="flex z-10">
-        <img
-          className="my-3 h-12 w-12 ml-1 rounded-[50%]"
+      <div className="mt-1 z-10 absolute w-full flex justify-end ">
+          <img
+          className="z-10 my-3 h-12 w-12 ml-1 rounded-[50%]"
           src={user?.photoURL}
           alt={user?.displayName || "User"}
         />
@@ -51,7 +38,11 @@ const Browse = () => {
         >
           Sign Out
         </button>
+        
       </div>
+      <PrimaryContainer/>
+
+      
     </div>
   );
 };
