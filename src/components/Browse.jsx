@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase";
 import { useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import PrimaryContainer from "./Primary/PrimaryContainer";
+import SecondayContainer from "./Secondary/SecondayContainer";
 
 const Browse = () => {
   
@@ -28,7 +29,7 @@ const Browse = () => {
       <Header />
       <div className="mt-1 z-10 absolute w-full flex justify-end ">
           <img
-          className="z-10 my-3 h-12 w-12 ml-1 rounded-[50%]"
+          className="z-10 my-3 h-12 w-12 rounded-[50%]"
           src={user?.photoURL}
           alt={user?.displayName || "User"}
         />
@@ -38,9 +39,9 @@ const Browse = () => {
         >
           Sign Out
         </button>
-        
       </div>
       <PrimaryContainer/>
+      <SecondayContainer/>
 
       
     </div>

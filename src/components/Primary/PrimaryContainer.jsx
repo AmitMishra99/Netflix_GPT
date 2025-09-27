@@ -14,7 +14,7 @@ const PrimaryContainer = () => {
   // console.log(mainMovie)
 
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <VideoTitle title={title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>
