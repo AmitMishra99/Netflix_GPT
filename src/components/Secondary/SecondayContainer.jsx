@@ -6,20 +6,22 @@ const SecondayContainer = () => {
 
   return (
     movies && (
-      <div>
-        <MoviesList
-          title={"Now Playing Movies"}
-          movies={movies.nowPlayingMovies}
-        />
-        <MoviesList
-          title={"Trending Movies"}
-          movies={movies.nowPlayingMovies}
-        />
-        <MoviesList title={"Now Playing"} movies={movies.nowPlayingMovies} />
-        <MoviesList
-          title={"Upcoming Movies "}
-          movies={movies.nowPlayingMovies}
-        />
+      <div className="  bg-black">
+        <div className="-mt-80 relative pl-5">
+          <MoviesList
+            title={"Now Playing Movies"}
+            movies={movies.nowPlayingMovies}
+          />
+          <MoviesList
+            title={"Trending Movies"}
+            movies={movies.trendingMovies}
+          />
+          <MoviesList title={"Popular Movies"} movies={movies.popularMovies} />
+          <MoviesList
+            title={"Upcoming Movies "}
+            movies={movies.upcomingMovies}
+          />
+        </div>
       </div>
     )
   );

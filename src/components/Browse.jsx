@@ -6,12 +6,17 @@ import { useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import PrimaryContainer from "./Primary/PrimaryContainer";
 import SecondayContainer from "./Secondary/SecondayContainer";
+import usePopularMovies from "../hooks/usePopularMovies";
+import useTrendingMovies from "../hooks/useTrendingMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
 
 const Browse = () => {
-  
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   useNowPlayingMovies();
+  usePopularMovies();
+  useTrendingMovies();
+  useUpcomingMovies();
 
   const handleSignOut = () => {
     signOut(auth)
@@ -25,10 +30,10 @@ const Browse = () => {
   };
 
   return (
-    <div >
+    <div>
       <Header />
       <div className="mt-1 z-10 absolute w-full flex justify-end ">
-          <img
+        <img
           className="z-10 my-3 h-12 w-12 rounded-[50%]"
           src={user?.photoURL}
           alt={user?.displayName || "User"}
@@ -40,10 +45,8 @@ const Browse = () => {
           Sign Out
         </button>
       </div>
-      <PrimaryContainer/>
-      <SecondayContainer/>
-
-      
+      <PrimaryContainer />
+      <SecondayContainer />
     </div>
   );
 };

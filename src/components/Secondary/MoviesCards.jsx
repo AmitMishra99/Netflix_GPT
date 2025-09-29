@@ -1,13 +1,12 @@
-import React from 'react'
-import { img_cdn } from '../../utils/constants'
+import React from "react";
+import { img_cdn } from "../../utils/constants";
 
-const MoviesCards = ({posterPath}) => {
+const MoviesCards = ({ posterPath }) => {
   return (
-    <div className='w-38 mr-4 '>
-      <img 
-      src={img_cdn+posterPath} alt="" />
+    <div className="w-38 mr-4 mt-1.5 ">
+      <img src={img_cdn + posterPath} alt="" />
     </div>
-  )
-}
+  );
+};
 
-export default MoviesCards
+export default MoviesCards;
