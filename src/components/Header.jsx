@@ -1,4 +1,4 @@
-import { netflix_background } from "../utils/constants";
+import {  netflix_icon } from "../utils/constants";
 
 const Header = () => {
   return (
@@ -6,7 +6,7 @@ const Header = () => {
       <div className="bg-gradient-to-b from-black  h-20 inset-0 absolute z-10 overflow-x-hidden" ></div>
       <img
         className=" z-10 h-[10%] p-1 mx-4 absolute"
-        src={netflix_background}
+        src={netflix_icon}
         alt="netflix_logo"
       />
     </div>

@@ -10,4 +10,7 @@
   - unsubscribe to the onAuthChange 
   - Redux - toolkit integrated for user slice 
   - hardcoded data to constants file 
-  - 
+  - TMDB api resolved 
+  - Created mvoies Slice for different movies section 
+  - Custom Hooks Created 
+  - GPT Search feature Integration 

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
 import validation from "../utils/validation";
 import { auth } from "../utils/firebase";
 import {
@@ -10,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
-import { user_logo } from "../utils/constants";
+import { netflix_background, user_logo } from "../utils/constants";
 
 const Login = () => {
   const [signIn, signUp] = useState(true);
@@ -79,10 +78,9 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
       <img
         className="absolute w-full h-full object-cover"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/8d617e19-3c3c-4c28-8998-c9b14dbc7200/web/IN-en-20250901-TRIFECTA-perspective_48d84d4e-9558-46b8-a0f3-8b2dc8478431_small.jpg"
+        src={netflix_background}
         alt=""
       />
       <div className=" relative text-white flex justify-center items-center min-h-screen p-4">

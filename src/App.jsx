@@ -6,6 +6,7 @@ import { auth } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./store/userSlice";
 import Browse from "./components/Browse";
+import Header from "./components/Header";
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
 
   return (
     <div className="App">
+        <Header/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/browse" element={<Browse />} />
